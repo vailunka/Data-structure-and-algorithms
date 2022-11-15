@@ -30,7 +30,7 @@ public class Grades {
        4. Fix the issue.
        5. Transform the algorithm to a generic one as instructed in the readme file.
       */
-      Algorithms.reverse(null);
+      Algorithms.reverse(grades);
    }
 
    /**
@@ -45,7 +45,7 @@ public class Grades {
        5. Transform the algorithm to a generic one as instructed in the readme file.
       */
       
-      Algorithms.sort(null);
+      Algorithms.sort(grades);
    }
 
 
