@@ -40,4 +40,12 @@ public class Algorithms {
     }
 
 
+
+
+    public static class ModeSearchResult<T> {
+        public T theMode;
+        public int count = 0;
+     }
+
+
 }

@@ -1,5 +1,6 @@
 package oy.tol.tra;
 
+
 /**
  * An implementation of the StackInterface.
  * <p>
@@ -16,14 +17,23 @@ public class StackImplementation<E> implements StackInterface<E> {
    // TODO: Add member variables needed.
    // Do not use constant values in code, e.g. 10. Instead, define a constant for that. For example:
    // private static final int MY_CONSTANT_VARIABLE = 10;
+   private static final int MY_CONSTANT_VARIABLE = 10;
+   private Object [] itemArray;
+   private int capacity;
+   private int currentIndex = -1;
+   
 
-
+   
    /**
     * Allocates a stack with a default capacity.
     * @throws StackAllocationException
     */
    public StackImplementation() throws StackAllocationException {
       // TODO: call the constructor with size parameter with default size (see member variable!).
+        this(MY_CONSTANT_VARIABLE);
+      
+      
+      
    }
 
    /** TODO: Implement so that
@@ -34,53 +44,125 @@ public class StackImplementation<E> implements StackInterface<E> {
     * @throws StackAllocationException If cannot allocate room for the internal array.
     */
    public StackImplementation(int capacity) throws StackAllocationException {
+      if(capacity < 2){
+         throw new StackAllocationException("Should be more than 1");
+      }
+      try{
+         itemArray = new Object[capacity];
+         this.capacity = capacity;
+         currentIndex = -1;
+      }
+      catch(Exception e){
+         throw new StackAllocationException(e.getMessage());
+      }
    }
+
+   
+   
+   
+   
 
    @Override
    public int capacity() {
       // TODO: Implement this
-      return 0;
+      return capacity;
    }
-
+   @SuppressWarnings("unchecked")
    @Override
    public void push(E element) throws StackAllocationException, NullPointerException {
       // TODO: Implement this
-   }
+      
+         if(currentIndex >= capacity){
+         try{
+            throw new StackAllocationException("Stack is full");
+            }
+            catch(StackAllocationException full){
+               ReallocateArray();
+            }
+         }
+      
+      currentIndex = currentIndex + 1;
+      itemArray[currentIndex] = element;
+      if(element == null){
+         throw new NullPointerException("element is null!");
+         }
+      }
+      
+   
 
    @SuppressWarnings("unchecked")
    @Override
    public E pop() throws StackIsEmptyException {
       // TODO: Implement this
-      return null;
+      if(currentIndex == -1 || itemArray[currentIndex]==null){
+         throw new StackIsEmptyException("Stack is empty");
+      }
+      else{
+         return (E) itemArray[currentIndex--];
+      
+      }
+      
    }
 
    @SuppressWarnings("unchecked")
    @Override
    public E peek() throws StackIsEmptyException {
-      // TODO: Implement this
-      return null;
-   }
-
+      if(currentIndex == -1){
+      throw new StackIsEmptyException("Stack is empty");
+      }
+      if(currentIndex < capacity){
+      return (E) itemArray[currentIndex];
+      }
+      else{
+         return null;
+      }
+      }
+   
    @Override
    public int size() {
       // TODO: Implement this
-      return 0;
+      return currentIndex + 1;
+      
    }
-
+ 
    @Override
    public void clear() {
       // TODO: Implement this
+      itemArray = null;
    }
-
+   
    @Override
    public boolean isEmpty() {
-      // TODO: Implement this
+      if(currentIndex == -1){
+         return true;
+      }
       return false;
+      
    }
-
+ 
    @Override
    public String toString() {
       // TODO: Implement this
-      return "";
+      StringBuilder builder = new StringBuilder();
+      builder.append("[");
+      for(int index = currentIndex; index > -1; index--){
+         String tmpString = itemArray[index].toString();
+         builder.append(tmpString);
+         builder.append(", ");
+      }
+      builder.append("]");
+      return builder.toString();
    }
+   
+   
+   public void ReallocateArray(){
+      int newCapacity = capacity * 2;
+      Object [] newitemArray = new Object[newCapacity];
+      for(int index = 0; index < currentIndex; index++){
+         newitemArray[index] =  itemArray[index];
+      }
+      capacity = newCapacity;
+      itemArray = newitemArray;
+   }
+   
 }
