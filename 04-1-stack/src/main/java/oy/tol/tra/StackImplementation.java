@@ -73,19 +73,15 @@ public class StackImplementation<E> implements StackInterface<E> {
    public void push(E element) throws StackAllocationException, NullPointerException {
       // TODO: Implement this
       if(element == null){
+         
          throw new NullPointerException();
          }
          currentIndex = currentIndex + 1;
       if(currentIndex >= capacity){
-         try{
-            throw new StackAllocationException("Stack is full");
+        ReallocateArray();
             }
-         catch(StackAllocationException full){
-               ReallocateArray();
-            }
-         }
       
-      itemArray[currentIndex] = element;
+      itemArray[currentIndex] =  element;
       
       }
       
@@ -129,8 +125,14 @@ public class StackImplementation<E> implements StackInterface<E> {
    @Override
    public void clear() {
       // TODO: Implement this
-      itemArray = null;
-   }
+      for(int index = 0; index < capacity; index++){
+         itemArray[index] = null;
+      }
+
+      currentIndex = -1; 
+      }
+      
+   
    
    @Override
    public boolean isEmpty() {
@@ -143,10 +145,12 @@ public class StackImplementation<E> implements StackInterface<E> {
       // TODO: Implement this
       StringBuilder builder = new StringBuilder();
       builder.append("[");
-      for(int index = currentIndex; index > -1; index--){
+      for(int index = 0; index < currentIndex + 1; index++){
          String tmpString = itemArray[index].toString();
          builder.append(tmpString);
+         if(index < currentIndex){
          builder.append(", ");
+      }
       }
       builder.append("]");
       return builder.toString();
@@ -154,6 +158,7 @@ public class StackImplementation<E> implements StackInterface<E> {
    
    
    public void ReallocateArray(){
+      System.out.println("allokoidaan");
       int newCapacity = capacity * 2;
       Object [] newitemArray = new Object[newCapacity];
       for(int index = 0; index < currentIndex; index++){
@@ -161,6 +166,9 @@ public class StackImplementation<E> implements StackInterface<E> {
       }
       capacity = newCapacity;
       itemArray = newitemArray;
+   }
+
+   public void StackImplementation(int capacity2) {
    }
    
 }

@@ -61,6 +61,62 @@ public class ParenthesisChecker {
       //         throw an exception, wrong kind of parenthesis were in the text (e.g. "asfa ( asdf } sadf")
       // if the stack is not empty after all the characters have been handled
       //   throw an exception since the string has more opening than closing parentheses.
-      return 0; // << TODO: Change that too!!
-   }
-}
+
+      
+
+
+         // finding opening parentheses ([{
+            int count = 0;
+            Character pop;
+            Character a;
+            for (int index = 0; index < fromString.length() ; index++) {
+                a = fromString.charAt(index);
+                if (a == '(') {
+                    stack.push(a);
+                    count++;
+                }
+                if (a == '{') {
+                    stack.push(a);
+                    count++;
+                }
+                if (a == '[') {
+                    stack.push(a);
+                    count++;
+                }
+
+                try {
+                    if (a == ')') {
+                        count++;
+                        if (stack.pop() != '(') {
+                            throw new ParenthesesException("wrong kind of parenthesis were in the text", -3);
+                        }
+                    }
+
+                    if (a == '}') {
+                        count++;
+                        if (stack.pop() != '{') {
+                            throw new ParenthesesException("wrong kind of parenthesis were in the text", -3);
+                        }
+                    }
+
+                    if (a == ']') {
+                        count++;
+                        if (stack.pop() != '[') {
+                            throw new ParenthesesException("wrong kind of parenthesis were in the text", -3);
+                        }
+                    }
+
+
+                    } catch (StackIsEmptyException e) {
+                        throw new ParenthesesException("there are too many closing parentheses ", -1);
+                    }
+            }
+
+            
+            if (!stack.isEmpty()) {
+                throw new ParenthesesException("Too few closing parentheses", -2);
+            }
+    
+            return count;
+        }
+    }
