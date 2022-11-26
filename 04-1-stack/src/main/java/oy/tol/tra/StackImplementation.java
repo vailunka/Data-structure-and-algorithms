@@ -158,7 +158,7 @@ public class StackImplementation<E> implements StackInterface<E> {
    
    
    public void ReallocateArray(){
-      System.out.println("allokoidaan");
+      
       int newCapacity = capacity * 2;
       Object [] newitemArray = new Object[newCapacity];
       for(int index = 0; index < currentIndex; index++){
