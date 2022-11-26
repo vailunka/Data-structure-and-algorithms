@@ -68,7 +68,7 @@ public class StackImplementation<E> implements StackInterface<E> {
       
       return capacity;
    }
-   @SuppressWarnings("unchecked")
+   
    @Override
    public void push(E element) throws StackAllocationException, NullPointerException {
       // TODO: Implement this
@@ -168,7 +168,9 @@ public class StackImplementation<E> implements StackInterface<E> {
       itemArray = newitemArray;
    }
 
-   public void StackImplementation(int capacity2) {
+   public void StackImplementation1(int capacity2) {
    }
+
+   
    
 }

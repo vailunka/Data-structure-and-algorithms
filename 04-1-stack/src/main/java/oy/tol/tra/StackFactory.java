@@ -23,7 +23,7 @@ public class StackFactory {
       // - Instantiates your stack implementation, 
       // - and return the stack object to the caller.
       StackImplementation<Integer> stack = new StackImplementation<>();
-      stack.StackImplementation(capacity);
+      stack.StackImplementation1(capacity);
       return new StackImplementation<>(capacity);
    }
 
@@ -36,7 +36,7 @@ public class StackFactory {
    public static StackInterface<Character> createCharacterStack(int capacity) {
       // TODO: Implement this!StackImplementation<Integer> stack = new StackImplementation<>();
       StackImplementation<Character> stack = new StackImplementation<>();
-      stack.StackImplementation(capacity);
+      stack.StackImplementation1(capacity);
       return new StackImplementation<>(capacity);
    }
 }
