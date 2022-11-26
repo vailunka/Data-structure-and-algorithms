@@ -65,9 +65,9 @@ public class ParenthesisChecker {
       
 
 
-         // finding opening parentheses ([{
+         
             int count = 0;
-            Character pop;
+            
             Character a;
             for (int index = 0; index < fromString.length() ; index++) {
                 a = fromString.charAt(index);
