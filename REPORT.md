@@ -13,8 +13,9 @@ Aikakompleksisuuden pohtimista ja ratkaisemista.
 Raportti:
 Aloitin pohtimaan aikakompleksisuutta sort-metodista. Metodissani on for looppi toisen sisässä, jolloin voidaan ajatella, että huonoimassa tapauksessa se voisi olla 4n^2, joten tämän aika kompleksisuus on O(n^2).
 Sen jälkeen kun aloin miettimään mikä on Findmode metodin aikakompleksisuus, metodissa on yksi for looppi, joka käy listan alusta loppuun voidaaan ajatella aikakompleksisuus on 2n^2, josta supistellaan saadaan aikakompleksisuudeksi O(n^2). Nyt kun vertailen aikakompleksisuus funktion saamiini kuvaajiin niin voidaan todeta, että päätelmäni on oikea kun miettii millaisen kuvaajan 
-
+![02modegraphs][02modetaulukko1.PNG]
 ## 03-draw
+
 
 
 ## 04-1-stack
