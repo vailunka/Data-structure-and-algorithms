@@ -16,10 +16,14 @@ Sen jälkeen kun aloin miettimään mikä on Findmode metodin aikakompleksisuus,
 ![02modegraphs1](https://gitlab.com/-/ide/project/vailunka19/villeailunka-tira-demo-2022/tree/main/-/02-mode/02modetaulukko1.png/) 
 ![02modegraphs2](https://gitlab.com/-/ide/project/vailunka19/villeailunka-tira-demo-2022/tree/main/-/02-mode/02modetaulukko2.png/)
 ## 03-draw
-
+-Harjoituksessa opin tietorakenteen partitiointia.
+-Ongelmia geneerisessä toteuttamisessa, joten jälleen ohjelmointi 2 ja opettajien apu auttoivat tämänkin tehtävän läpi.
 
 
 ## 04-1-stack
+-Pinotietorakenteen opiskelimen ja käyttäminen esimerkki tilanteessa.
+-Hetken aikaa joutui pohtimaan toString metodia ja muistelemaan ohjelmointi 2
+-Lisäksi olin ajatellut clear-metodin väärin, jolloin testini eivät menneet tarpeeksi päätä hakattuani seinään kurssin vetäjillä viestiä ja ongelma löytyi clearista.
 
 
 ## 04-2-queue
