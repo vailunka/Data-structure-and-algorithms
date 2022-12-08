@@ -31,8 +31,7 @@ public class StackImplementation<E> implements StackInterface<E> {
    public StackImplementation() throws StackAllocationException {
       // TODO: call the constructor with size parameter with default size (see member variable!).
         this(MY_CONSTANT_VARIABLE);
-      
-      
+ 
       
    }
 

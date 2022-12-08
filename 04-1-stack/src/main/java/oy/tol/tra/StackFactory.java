@@ -34,7 +34,7 @@ public class StackFactory {
     * @return The stack implementation holding Characters.
     */
    public static StackInterface<Character> createCharacterStack(int capacity) {
-      // TODO: Implement this!StackImplementation<Integer> stack = new StackImplementation<>();
+      
       StackImplementation<Character> stack = new StackImplementation<>();
       stack.StackImplementation1(capacity);
       return new StackImplementation<>(capacity);
