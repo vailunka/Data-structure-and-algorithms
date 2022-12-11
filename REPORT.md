@@ -34,7 +34,7 @@ Linkedlist-tietorakenteen toiminallisuutta. Viime kerrasta opppineena ja Antin s
 add(int index, E element) javan arraylisti otti 181000ns, kuntaas omat toteutukseni otti 4084000ns, get(int) ero ei ollut enään suuri 7100ns vs oma 19100ns ja indexOf(String) oma toteutukseni huomattavasti nopeampi entä javan.
 
 ## 05-binsearch
-
+Puolitushaus opetteleminen. Visualisaatio videot aiheesta auttoivat, toteutin molemmat iteratiivisen ja rekursiivisen tavan.
 
 ## 05-invoices
 
