@@ -85,7 +85,7 @@ public class KeyValueArray<K extends Comparable<K>, V> implements Dictionary<K,V
             sorted[newIndex++] = pairs[index];
          }
       }
-      Algorithms.fastSort(sorted);
+      Algorithms.sort(sorted);
       return sorted;
    }
 
