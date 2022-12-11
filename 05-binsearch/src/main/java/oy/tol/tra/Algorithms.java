@@ -114,7 +114,7 @@ public class Algorithms {
         // TODO Implement this in step 2.
         
         //rekursiivinen
-        /* 
+        
         if(toIndex >= fromIndex){
             int middle = fromIndex + (toIndex - fromIndex ) / 2;
 
@@ -133,8 +133,8 @@ public class Algorithms {
 
         }
         return -1;
-        */
-        
+         
+        /* 
         while(toIndex >= fromIndex){
             int middle = fromIndex + (toIndex - fromIndex ) / 2;
 
@@ -152,4 +152,7 @@ public class Algorithms {
         return -1;
         
     }
-        }
+    */
+}
+}
+    
