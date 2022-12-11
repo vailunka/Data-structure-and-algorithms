@@ -27,10 +27,11 @@ Sen jälkeen kun aloin miettimään mikä on Findmode metodin aikakompleksisuus,
 
 
 ## 04-2-queue
-
+Harjoutuksessa opiskelin jonotietorakenteen toimintaa. Tehtävässä hyödylliseksi osoittautui kynän ja paperin käyttö, jälleen kerran. Yksi ongelma, joka vastaan tuli ja aiheutti paljon harmaita hiuksia, johtui kun käytin clearia olin unohtanut nolla countin, joka johti testien epäonnistumiseen.
 
 ## 04-3-linkedlist
-
+Linkedlist-tietorakenteen toiminallisuutta. Viime kerrasta opppineena ja Antin suosittelemana kynä ja paperi ulottuville ennen kuin yhtää koodia kirjoitettu. Sen avulla oli helppo suorittaa myös reversettäminen. Omat toteutukset huomattavasti  suurempia rivi määrältään verrattuna javan arraylist metodeihin.
+add(int index, E element) javan arraylisti otti 181000ns, kuntaas omat toteutukseni otti 4084000ns, get(int) ero ei ollut enään suuri 7100ns vs oma 19100ns ja indexOf(String) oma toteutukseni huomattavasti nopeampi entä javan.
 
 ## 05-binsearch
 
