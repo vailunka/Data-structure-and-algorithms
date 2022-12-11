@@ -80,6 +80,7 @@ public class InvoiceInspector {
          Calendar dueDate = Calendar.getInstance();
          dueDate.set(Calendar.MONTH, dueDate.get(Calendar.MONTH)+1);
          long dueDateValue = dueDate.getTime().getTime();
+
          for (int paymentCounter = 0; paymentCounter < payments.length; paymentCounter++) {
             Payment payment = payments[paymentCounter];
             if (invoice.number.compareTo(payment.number) == 0) {
@@ -136,13 +137,49 @@ public class InvoiceInspector {
     * @throws IOException
     */
    public void handleInvoicesAndPaymentsFast() {
-
+      Algorithms.fastSort(invoices);
+      Algorithms.fastSort(payments);
       // Use the due date already calculated for you when creating new Invoices here!
-      Calendar dueDate = Calendar.getInstance();
-      dueDate.set(Calendar.MONTH, dueDate.get(Calendar.MONTH)+1);
-      long dueDateValue = dueDate.getTime().getTime();
+      for (int counter = 0; counter < invoices.length; counter++){
+         Invoice invoice = invoices[counter];
+         boolean noPaymentForInvoiceFound = true;
+         Calendar dueDate = Calendar.getInstance();
+         dueDate.set(Calendar.MONTH, dueDate.get(Calendar.MONTH)+1);
+         long dueDateValue = dueDate.getTime().getTime();
+         Payment payment = new Payment(invoices[counter].number);
+         int foundIndex = Algorithms.binarySearch(payment, payments, 0, payments.length);
+         
+         if(foundIndex >= 0){
+            if(invoice.number.compareTo(payments[foundIndex].number) == 0){
+               noPaymentForInvoiceFound = false;
+               if(invoice.sum.compareTo(payments[foundIndex].sum) > 0){
+                  toCollect.add(new Invoice(invoice.number, invoice.sum - payments[foundIndex].sum, dueDateValue));
+               }
+               }
+         }
 
-      // TODO: Add your algorithm here!
+         if (noPaymentForInvoiceFound) {
+            toCollect.add(invoice);
+         } 
+         }
+         Invoice[] array = new Invoice[toCollect.size()];
+      int index = 0;
+      for (Invoice invoice : toCollect) {
+         array[index++] = invoice;
+      }
+      // NOTE: This is your Algorithms sort used here!
+      Algorithms.sort(array);
+      toCollect.clear();
+      for (Invoice invoice : array) {
+         toCollect.add(invoice);
+      }
+         
    }
+   }
+      // NOTE: This is your Algorithms sort used here!
+      
+      // TODO: Add your algorithm here!
+      
+   
 
-}
+

@@ -46,6 +46,36 @@ public class Algorithms {
         public T theMode;
         public int count = 0;
      }
+     
+     public static <E extends Comparable<E>> void fastSort(Comparable<E>[] array){
+        quickSort(array, 0, array.length -1);
+        
+        
+        
+    }
+
+
+    private  static <E extends Comparable<E>> void quickSort(Comparable<E>[] array, int low, int high){
+        if(low < high){
+            int partitionIndex = partition(array, low, high);
+            quickSort(array, low, partitionIndex - 1);
+            quickSort(array, partitionIndex + 1, high);
+        }
+    }
+
+    private  static <E extends Comparable<E>> int partition(Comparable<E>[] array, int low, int high){
+        E pivotValue = (E) array[high];
+        int i = low -1;
+        for(int j = low; j < high; j++){
+            if(array[j].compareTo(pivotValue) < 0){
+                i++;
+                swap(array, i, j);
+            }
+        }
+        swap(array, i + 1, high);
+        return i + 1;
+    }
+
 
 
 }

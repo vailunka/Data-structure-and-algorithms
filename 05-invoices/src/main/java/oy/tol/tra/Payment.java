@@ -3,6 +3,11 @@ package oy.tol.tra;
 class Payment implements Comparable<Payment>  {
     Integer number;
     Integer sum;
+    
+    Payment(Integer number){
+        assert(number != null);
+        this.number = number;
+    }
 
     Payment(Integer number, Integer sum) {
         assert(number != null && sum != null);

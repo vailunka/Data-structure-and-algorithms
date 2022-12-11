@@ -45,7 +45,7 @@ public class Grades {
        5. Transform the algorithm to a generic one as instructed in the readme file.
       */
       
-      Algorithms.sort(grades);
+      Algorithms.fastSort(grades);
    }
 
 
