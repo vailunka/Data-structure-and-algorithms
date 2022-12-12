@@ -65,9 +65,11 @@ public class KeyValueHashTable<K extends Comparable<K>, V> implements Dictionary
     @Override
     public String getStatus() {
         // TODO: Implement this!
-        String toReturn = "KeyValueArray reallocated " + reallocateCount + " times, each time doubles the size\n";
-      toReturn += String.format("KeyValueArray fill rate is %.2f%%%n", (count / (double)array.length) * 100.0);
-      return toReturn;
+        String toReturn = "reallocatecount" + reallocateCount + "\n";
+        toReturn += String.format( "count" + count + "\n");
+        toReturn += String.format( "collisions" + collisioncount + "\n");
+        toReturn += String.format( "maxprobing" + maxProbingCount + "\n");
+        return toReturn;
         
     }
 
@@ -115,18 +117,29 @@ public class KeyValueHashTable<K extends Comparable<K>, V> implements Dictionary
         int index = 0;
         int  hashModifier = 0; 
         boolean found = false;
+        V result = null;
         if(key == null){
             throw new IllegalArgumentException("Key to find cannot be null");
         }
         do{
             index = indexFor(hashModifier, key);
-            if(array[index] != null && key.equals(array[index].getKey())){
-                return array[index].getValue();
+            if(array[index] != null){
+                if(array[index].getKey().equals(key)){
+                    result =  array[index].getValue();
+                    found = true;
+                }
+                else{
+                    hashModifier++;
+                }
+            }  
+            else{
+                found = true;
             }
+
         }while(!found);{
-            hashModifier++;
+            
         }
-        return null;
+        return result;
     }
 
     @Override
@@ -149,8 +162,8 @@ public class KeyValueHashTable<K extends Comparable<K>, V> implements Dictionary
     @Override
     public void compress() throws OutOfMemoryError {
         // TODO: Implement this!
-        int indexOfFirstNull = Algorithms.partitionByRule(array, count, element -> element == null);
-        reallocate(indexOfFirstNull);
+        int newCapacity =  (int) (count * (1.0 * loadfactor));
+        reallocate(newCapacity);
 
 
     }
@@ -158,8 +171,9 @@ public class KeyValueHashTable<K extends Comparable<K>, V> implements Dictionary
     
     @java.lang.SuppressWarnings({"squid:S3012", "unchecked"})
     public void reallocate(int newSize){
+        reallocateCount++;
         Pair<K, V> [] oldArray = this.array;
-        array = (Pair<K,V>[])new Pair[newSize];
+        this.array = (Pair<K,V>[])new Pair[newSize];
         int oldCapacity = capacity;
         count = 0;
         capacity = newSize;
