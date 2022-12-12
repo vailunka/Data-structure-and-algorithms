@@ -57,6 +57,7 @@ public class PhoneBookTests {
             if (fastHashTablePhoneBook.getType() == Dictionary.Type.HASHTABLE) {
                 start = System.nanoTime();
                 readPersonsFromFile(fastHashTablePhoneBook);
+                System.out.println("1");
                 readingToHashTablePhoneBook = System.nanoTime() - start;
                 assertEquals(entryCount, fastHashTablePhoneBook.size(), "All persons were not added to the phonebook");
             }

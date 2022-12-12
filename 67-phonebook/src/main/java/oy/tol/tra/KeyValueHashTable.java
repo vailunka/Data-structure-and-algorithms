@@ -78,12 +78,12 @@ public class KeyValueHashTable<K extends Comparable<K>, V> implements Dictionary
         int  hashModifier = 0; 
         int currentProbingcount = 0;
         boolean added = false;
-        double currentLoadFactor = 0;
-        currentLoadFactor = count / capacity;
+        
+        
         if (null == key || value == null) {
             throw new IllegalArgumentException("Not Key nor value can be null");
         }
-        if(currentLoadFactor > loadfactor){
+        if(count > capacity * loadfactor){
             reallocate(capacity * 2);
         }
         do{
@@ -154,8 +154,28 @@ public class KeyValueHashTable<K extends Comparable<K>, V> implements Dictionary
 
 
     }
+    
+    
     @java.lang.SuppressWarnings({"squid:S3012", "unchecked"})
     public void reallocate(int newSize){
+        Pair<K, V> [] oldArray = this.array;
+        array = (Pair<K,V>[])new Pair[newSize];
+        int oldCapacity = capacity;
+        count = 0;
+        capacity = newSize;
+        for(int i = 0; i < oldCapacity; i++){
+            if(oldArray[i] != null){
+                add(oldArray[i].getKey(), oldArray[i].getValue());
+            }
+        }
+    }
+
+
+
+
+
+
+        /* 
         int oldCapacity = capacity;
         capacity = newSize;
         reallocateCount++;
@@ -181,7 +201,8 @@ public class KeyValueHashTable<K extends Comparable<K>, V> implements Dictionary
             }
         }
     array = newArray;
-    }
+    */
+    
 
     public int indexFor(int hashModifier, K key){
         return ((key.hashCode() & 0x7fffffff) + hashModifier) % capacity;
