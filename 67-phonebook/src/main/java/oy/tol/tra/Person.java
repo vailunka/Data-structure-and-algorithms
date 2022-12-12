@@ -22,19 +22,24 @@ public class Person implements Comparable<Person> {
     }
 
     // TODO: Implement equals(), hashCode() and Comparable interface.
-    public boolean equals(Object person){
-        if(person instanceof Person){
-            return this.getFullName().equals(((Person)person).getFullName());
+    @Override
+    public boolean equals(Object other){
+        if(other instanceof Person){
+            return this.getFullName().equals(((Person)other).getFullName());
         }
         return false;
     }
-    
-    public int compareTo(Person person){
-        return this.getFullName().compareTo(person.getFullName());
+    @Override
+    public int compareTo(Person other){
+        return this.getFullName().compareTo(other.getFullName());
         
     }
-
+    @Override
     public int hashCode(){
-        return 0;
+        int hash = 5381;
+        for(int i = 0; i < getFullName().length(); i++){
+            hash = hash + getFullName().charAt(i);
+        }
+        return hash;
     }
 }
