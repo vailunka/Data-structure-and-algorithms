@@ -1,5 +1,7 @@
 package oy.tol.tra;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class TreeNode<K extends Comparable<K>,V>  {
     private int hash;
     private Pair<K,V> keyValue;
@@ -102,16 +104,16 @@ public class TreeNode<K extends Comparable<K>,V>  {
 
     
 
-	public void toSortedArray(Pair<K, V>[] sortedArray, int addIndex) {
+	public void toSortedArray(Pair<K, V>[] sortedArray, Integer [] addIndex) {
         if(leftChild != null){
             leftChild.toSortedArray(sortedArray, addIndex);
         }
-        sortedArray[addIndex] = new Pair<>(keyValue.getKey(), keyValue.getValue());
+        sortedArray[addIndex[0]++] = new Pair<>(keyValue.getKey(), keyValue.getValue());
         if (collisionChain != null) {
 			for (int index = 0; index < collisionChain.size(); index++) {
 				Pair<K,V> found = collisionChain.get(index);
 				if (found != null) {
-					sortedArray[addIndex++] = new Pair<K,V>(found.getKey(), found.getValue());
+					sortedArray[addIndex[0]++] = new Pair<K,V>(found.getKey(), found.getValue());
 				}
 			}
 		}

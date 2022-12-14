@@ -101,10 +101,10 @@ public class KeyValueBSearchTree<K extends Comparable<K>,V> implements Dictionar
             return null;
         }
         Pair<K,V>[] sortedArray = (Pair<K,V>[])new Pair[count];
-        int addIndex = 0;
+        Integer [] addIndex = {0};
         root.toSortedArray(sortedArray, addIndex);
         Algorithms.fastSort(sortedArray);
-        return null;
+        return sortedArray;
     }
     
    

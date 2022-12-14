@@ -90,7 +90,7 @@ public class Algorithms {
 
         public static <T> int partitionByRule(T [] array, int count, Predicate<T> toCompare){
             int i = 0;
-            for(i = 0; i < count - 1; i++ ){
+            for(i = 0; i < count; i++ ){
                 if(i >= count){
                     return count;
                 }
@@ -98,6 +98,9 @@ public class Algorithms {
                     break;
                 }
             }
+            if(i >= count){
+                    return count;
+                }
             int nextindex = i + 1;
             while(count > nextindex){
                 if(!toCompare.test(array[nextindex])){
