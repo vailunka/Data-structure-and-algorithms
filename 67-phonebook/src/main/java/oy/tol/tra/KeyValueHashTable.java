@@ -29,13 +29,14 @@ public class KeyValueHashTable<K extends Comparable<K>, V> implements Dictionary
 
     @Override
     public Type getType() {
-        return Type.HASHTABLE;
+        return Type.NONE;
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public void ensureCapacity(int size) throws OutOfMemoryError {
         // TODO: Implement this!
+        try{
         if(count == 0){
             this.capacity = size;
            array = (Pair<K,V>[])new Pair[size];
@@ -43,6 +44,10 @@ public class KeyValueHashTable<K extends Comparable<K>, V> implements Dictionary
         else{
             reallocate(size * 2);
         }
+    }catch(Exception e){
+        throw new OutOfMemoryError(e.getMessage());
+     } 
+    
     }
 
     @Override
@@ -65,10 +70,11 @@ public class KeyValueHashTable<K extends Comparable<K>, V> implements Dictionary
     @Override
     public String getStatus() {
         // TODO: Implement this!
-        String toReturn = "reallocatecount" + reallocateCount + "\n";
-        toReturn += String.format( "count" + count + "\n");
-        toReturn += String.format( "collisions" + collisioncount + "\n");
-        toReturn += String.format( "maxprobing" + maxProbingCount + "\n");
+        String toReturn = "reallocatecount: " + reallocateCount + "\n";
+        toReturn += String.format( "count: " + count + "\n");
+        toReturn += String.format( "collisions: " + collisioncount + "\n");
+        toReturn += String.format( "maxprobing: " + maxProbingCount + "\n");
+        toReturn += String.format( "fillrate: " + count / (double)array.length + "\n");
         return toReturn;
         
     }
@@ -94,19 +100,20 @@ public class KeyValueHashTable<K extends Comparable<K>, V> implements Dictionary
                 array[index] = new Pair<>(key, value);
                 added = true;
                 count++;
+                if(currentProbingcount > maxProbingCount){
+                    maxProbingCount = currentProbingcount;
+                }
                 return true;
             }
             else if(!array[index].getKey().equals(key)){
-                //collision
                 hashModifier++;
                 collisioncount++;
                 currentProbingcount++;
             }
 
         }while(!added);
-        if(currentProbingcount > maxProbingCount){
-            maxProbingCount = currentProbingcount;
-        } 
+        
+        
 
         return false;
     }
@@ -150,7 +157,7 @@ public class KeyValueHashTable<K extends Comparable<K>, V> implements Dictionary
         Pair<K, V> [] sorted = (Pair<K,V>[])new Pair[count];
         int addIndex = 0;
         for(int index = 0; index < capacity; index++){
-            if(array[index ]!= null){
+            if(array[index]!= null){
                 sorted[addIndex++] = array[index];
             }
         }
@@ -183,39 +190,6 @@ public class KeyValueHashTable<K extends Comparable<K>, V> implements Dictionary
             }
         }
     }
-
-
-
-
-
-
-        /* 
-        int oldCapacity = capacity;
-        capacity = newSize;
-        reallocateCount++;
-        Pair<K, V> [] newArray = (Pair<K,V>[])new Pair[newSize];
-        for(int i = 0; i < oldCapacity; i++){
-            boolean replaced = false;
-            int hashModifier = 0;
-            int index = 0;
-            if(array[i] != null){
-                do{
-                    index = indexFor(hashModifier, array[i].getKey());
-                    if(newArray[index] == null){
-                        newArray[index] = new Pair<>(array[i].getKey(),array[i].getValue());
-                        replaced = true;
-                        
-                    }
-                    else {
-                        //collision
-                        hashModifier++;
-                        
-                    }
-        }while(!replaced);{}
-            }
-        }
-    array = newArray;
-    */
     
 
     public int indexFor(int hashModifier, K key){

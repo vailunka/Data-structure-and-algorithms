@@ -5,15 +5,29 @@ public class KeyValueBSearchTree<K extends Comparable<K>,V> implements Dictionar
 
     // This is the BST implementation, KeyValueHashTable has the hash table implementation
 
+    TreeNode<K,V> root;
+    int hash;
+    int count;
+    int maxDepth;
+    int btsCollisionCount;
+    public KeyValueBSearchTree(){
+        root = null;
+        count = 0;
+        maxDepth = 0;
+        btsCollisionCount = 0;
+    }
+
+
     @Override
     public Type getType() {
-       return Type.NONE;
+       return Type.BST;
     }
  
     @Override
     public int size() {
         // TODO: Implement this!
-        return 0;
+        return count;
+        
     }
 
     /**
@@ -35,29 +49,63 @@ public class KeyValueBSearchTree<K extends Comparable<K>,V> implements Dictionar
     @Override
     public boolean add(K key, V value) throws IllegalArgumentException, OutOfMemoryError {
         // TODO: Implement this!
+        if (null == key || value == null) {
+            throw new IllegalArgumentException("Not Key nor value can be null");
+        }
+        if(root == null){
+            root = new TreeNode<>(key, value);
+            count++;
+            maxDepth = 1;
+            return true;
+        }
+        else{
+            int added = root.insert(key, value, key.hashCode());
+            if(added > 0){
+                count++;
+                return true;
+            }
+        }
+
         return false;
     }
 
     @Override
     public V find(K key) throws IllegalArgumentException {
+
         // TODO: Implement this!
-        return null;
+        if(key == null){
+            throw new IllegalArgumentException("Key to find cannot be null");
+        }
+        if(root == null){
+            return null;
+        }else{
+            return root.find(key, key.hashCode());
+        }
     }
+        
 
     @Override
     public void ensureCapacity(int size) throws OutOfMemoryError {
         // TODO: Implement this (if needed)!
     }
-
-    @Override
-    public Pair<K,V> [] toSortedArray() {
-        // TODO: Implement this!
-        return null;
-      }
-    
       @Override
       public void compress() throws OutOfMemoryError {
         // TODO: Implement this (if needed)!
     }
+
+    @java.lang.SuppressWarnings({"unchecked"})
+    @Override
+    public Pair<K, V>[] toSortedArray() {
+       
+        if(root == null){
+            return null;
+        }
+        Pair<K,V>[] sortedArray = (Pair<K,V>[])new Pair[count];
+        int addIndex = 0;
+        root.toSortedArray(sortedArray, addIndex);
+        Algorithms.fastSort(sortedArray);
+        return null;
+    }
+    
    
 }
