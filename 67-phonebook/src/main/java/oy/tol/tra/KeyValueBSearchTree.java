@@ -43,7 +43,8 @@ public class KeyValueBSearchTree<K extends Comparable<K>,V> implements Dictionar
     @Override
     public String getStatus() {
         // TODO: Implement this!
-        return "";
+        String toReturn = ( "count: " + count + "\n");
+        return toReturn;
     }
 
     @Override
