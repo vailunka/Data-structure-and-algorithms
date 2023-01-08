@@ -184,35 +184,34 @@ public class Algorithms {
 
     public static <E extends Comparable<E>> void heapSort(Comparable<E>[] array){
         int arrayLength = array.length;
- 
+        
         
         for (int i = arrayLength / 2 - 1; i >= 0; i--)
             heap((E[]) array, arrayLength, i);
  
-        for (int i = arrayLength - 1; i > 0; i--) {
-            swap(array, i, 0);
-            
-            heap((E[]) array, i, 0);
+        for (int j = arrayLength - 1; j > 0; j--) {
+            swap(array, j, 0);
+            heap((E[]) array, j, 0);
         }
     }
     
     public static <E extends Comparable<E>> void heap(E arr[], int arrayLength, int i)
     {
-        int biggest = i; 
+        
         int left = 2 * i + 1; 
         int right = 2 * i + 2; 
+        int index = i; 
 
 
-
-        if (right < arrayLength && arr[right].compareTo(arr[biggest]) > 0)
-            biggest = right;
+        if (arr[right].compareTo(arr[index]) > 0 && right < arrayLength)
+            index = right;
         
-        if (left < arrayLength && arr[left].compareTo(arr[biggest]) > 0 )
-            biggest = left;
+        if (arr[left].compareTo(arr[index]) > 0 && left < arrayLength)
+            index = left;
  
-        if (biggest != i) {
-            swap(arr, biggest, i);
-            heap(arr, arrayLength, biggest);
+        if (index != i) {
+            swap(arr, index, i);
+            heap(arr, arrayLength, index);
         }
     }
     
