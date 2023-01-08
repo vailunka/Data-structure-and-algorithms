@@ -19,6 +19,7 @@ public class LinkedListImplementation<E> implements LinkedListInterface<E> {
 
    private Node<E> head = null;
    private int size = 0;
+   private int random = 0;
 
    public LinkedListImplementation(){
       head = null;
@@ -28,7 +29,7 @@ public class LinkedListImplementation<E> implements LinkedListInterface<E> {
 
    @Override
    public void add(E element) throws NullPointerException, LinkedListAllocationException {
-      // TODO: Implement this.
+      
       if(element == null){
          throw new NullPointerException("element is null");
       }
@@ -48,7 +49,7 @@ public class LinkedListImplementation<E> implements LinkedListInterface<E> {
 
    @Override
    public void add(int index, E element) throws NullPointerException, LinkedListAllocationException, IndexOutOfBoundsException {
-      // TODO: Implement this.
+      
       if(element == null){
          throw new NullPointerException("element is null");
       }
@@ -82,7 +83,7 @@ public class LinkedListImplementation<E> implements LinkedListInterface<E> {
 
    @Override
    public boolean remove(E element) throws NullPointerException {
-      // TODO: Implement this.
+      
       if(element == null){
          throw new NullPointerException("element is null");
       }
@@ -112,7 +113,7 @@ public class LinkedListImplementation<E> implements LinkedListInterface<E> {
    
    @Override
    public E remove(int index) throws IndexOutOfBoundsException {
-      // TODO: Implement this.
+      
       if(index >= size || index < 0){
          throw new IndexOutOfBoundsException("index out of bounds");
       }
@@ -140,7 +141,7 @@ public class LinkedListImplementation<E> implements LinkedListInterface<E> {
   
    @Override
    public E get(int index) throws IndexOutOfBoundsException {
-      // TODO: Implement this.
+      
       if(index >= size || index < 0){
          throw new IndexOutOfBoundsException("index out of bounds");
       }
@@ -163,7 +164,7 @@ public class LinkedListImplementation<E> implements LinkedListInterface<E> {
 
    @Override
    public int indexOf(E element) throws NullPointerException {
-      // TODO: Implement this.
+      
       if(element == null){
          throw new NullPointerException("element is null");
       }
@@ -188,21 +189,20 @@ public class LinkedListImplementation<E> implements LinkedListInterface<E> {
 
    @Override
    public int size() {
-      // TODO: Implement this.
+      
       return size;
    }
 
    @Override
    public void clear() {
-      // TODO: Implement this.
+      
       head = null;
       size = 0;
    }
 
    @Override
    public void reverse() {
-      // TODO: implement this only when doing the task explained the TASK-2.md.
-      // This method is not needed in doing the task in the README.md.
+      
       Node<E> current = head;
       Node<E> previous = null;
       Node<E> tmp = head;
@@ -217,7 +217,7 @@ public class LinkedListImplementation<E> implements LinkedListInterface<E> {
 
    @Override
    public String toString() {
-      // TODO: Implement this.
+      
       StringBuilder builder = new StringBuilder();
       if(size == 0){
          return "[]";
