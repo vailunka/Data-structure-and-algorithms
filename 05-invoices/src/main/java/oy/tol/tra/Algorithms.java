@@ -155,7 +155,8 @@ public class Algorithms {
 
 
     public static <E extends Comparable<E>> void fastSort(Comparable<E>[] array){
-        quickSort(array, 0, array.length -1);    
+        heapSort(array);
+       // quickSort(array, 0, array.length -1);    
     }
 
 
@@ -182,44 +183,36 @@ public class Algorithms {
 
 
     public static <E extends Comparable<E>> void heapSort(Comparable<E>[] array){
-        int N = array.length;
+        int arrayLength = array.length;
  
-        // Build heap (rearrange array)
-        for (int i = N / 2 - 1; i >= 0; i--)
-            heapify((E[]) array, N, i);
+        
+        for (int i = arrayLength / 2 - 1; i >= 0; i--)
+            heap((E[]) array, arrayLength, i);
  
-        // One by one extract an element from heap
-        for (int i = N - 1; i > 0; i--) {
-            // Move current root to end
-            E temp = (E) array[0];
-            array[0] = array[i];
-            array[i] = temp;
- 
-            // call max heapify on the reduced heap
-            heapify((E[]) array, i, 0);
+        for (int i = arrayLength - 1; i > 0; i--) {
+            swap(array, i, 0);
+            
+            heap((E[]) array, i, 0);
         }
     }
     
-    public static <E extends Comparable<E>> void heapify(E arr[], int N, int i)
+    public static <E extends Comparable<E>> void heap(E arr[], int arrayLength, int i)
     {
-        int largest = i; // Initialize largest as root
-        int l = 2 * i + 1; // left = 2*i + 1
-        int r = 2 * i + 2; // right = 2*i + 2
+        int biggest = i; 
+        int left = 2 * i + 1; 
+        int right = 2 * i + 2; 
+
+
+
+        if (right < arrayLength && arr[right].compareTo(arr[biggest]) > 0)
+            biggest = right;
+        
+        if (left < arrayLength && arr[left].compareTo(arr[biggest]) > 0 )
+            biggest = left;
  
-        // If left child is larger than root
-        if (l < N && arr[l].compareTo(arr[largest]) > 0 )
-            largest = l;
- 
-        // If right child is larger than largest so far
-        if (r < N && arr[r].compareTo(arr[largest]) > 0)
-            largest = r;
- 
-        // If largest is not root
-        if (largest != i) {
-            swap(arr, largest, i);
- 
-            // Recursively heapify the affected sub-tree
-            heapify(arr, N, largest);
+        if (biggest != i) {
+            swap(arr, biggest, i);
+            heap(arr, arrayLength, biggest);
         }
     }
     
