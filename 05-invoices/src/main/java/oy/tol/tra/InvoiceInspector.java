@@ -137,8 +137,8 @@ public class InvoiceInspector {
     * @throws IOException
     */
    public void handleInvoicesAndPaymentsFast() {
-      Algorithms.fastSort(invoices);
-      Algorithms.fastSort(payments);
+      Algorithms.heapSort(invoices);
+      Algorithms.heapSort(payments);
       // Use the due date already calculated for you when creating new Invoices here!
       for (int counter = 0; counter < invoices.length; counter++){
          Invoice invoice = invoices[counter];
@@ -168,7 +168,7 @@ public class InvoiceInspector {
          array[index++] = invoice;
       }
       // NOTE: This is your Algorithms sort used here!
-      Algorithms.sort(array);
+      Algorithms.heapSort(array);
       toCollect.clear();
       for (Invoice invoice : array) {
          toCollect.add(invoice);

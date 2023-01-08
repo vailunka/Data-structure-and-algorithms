@@ -38,7 +38,7 @@ public class Person implements Comparable<Person> {
     public int hashCode(){
         int hash = 5381;
         for(int i = 0; i < getFullName().length(); i++){
-            hash = ((hash << 3) + hash) + getFullName().charAt(i) + i;
+            hash = ((hash << 3) + hash) + getFullName().charAt(i) + i + getFullName().length();
         }
         return hash;
     }

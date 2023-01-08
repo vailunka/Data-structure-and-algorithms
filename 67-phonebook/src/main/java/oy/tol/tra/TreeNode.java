@@ -8,7 +8,8 @@ public class TreeNode<K extends Comparable<K>,V>  {
     private TreeNode<K,V> leftChild;
     private TreeNode<K,V> rightChild;
     private LinkedListImplementation<Pair<K,V>> collisionChain = null;
-    
+    public static int addDepth = 0;
+    public static int collisionChainLength = 0;
     
     public TreeNode(K key, V value){
         this.keyValue = new Pair<>(key, value);
@@ -27,18 +28,22 @@ public class TreeNode<K extends Comparable<K>,V>  {
          if(keyToSearch<(this.hash)){
             if(leftChild == null){
                 leftChild = new TreeNode<>(key, value);
+                TreeNode.addDepth++;
                 added = 1;
             }
             else{
+                TreeNode.addDepth++;
                 added = leftChild.insert(key, value, keyToSearch);
                 
             }
         }else if(keyToSearch > this.hash){
             if(rightChild == null){
                 rightChild = new TreeNode<>(key, value);
+                TreeNode.addDepth++;
                 added = 1;
             }else 
                 added = rightChild.insert(key, value, keyToSearch);
+                TreeNode.addDepth++;
         }else{
             
             if(keyValue.getKey().equals(key)){
@@ -50,6 +55,7 @@ public class TreeNode<K extends Comparable<K>,V>  {
                     collisionChain = new LinkedListImplementation<>();
                     collisionChain.add(new Pair<>(key, value));
                     added = 1;
+                    TreeNode.collisionChainLength = 1;
                 }
                 else if(!collisionChain.isEmpty()){
                     
@@ -62,6 +68,7 @@ public class TreeNode<K extends Comparable<K>,V>  {
                         collisionChain.remove(index);
                         collisionChain.add(new Pair<>(key, value));
                     }
+                    TreeNode.collisionChainLength = collisionChain.size();
                 }
             }
         }

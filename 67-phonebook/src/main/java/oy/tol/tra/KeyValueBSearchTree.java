@@ -1,5 +1,5 @@
 package oy.tol.tra;
-
+import java.lang.Math;
 
 public class KeyValueBSearchTree<K extends Comparable<K>,V> implements Dictionary<K, V> {
 
@@ -44,6 +44,8 @@ public class KeyValueBSearchTree<K extends Comparable<K>,V> implements Dictionar
     public String getStatus() {
         // TODO: Implement this!
         String toReturn = ( "count: " + count + "\n");
+        toReturn += String.format( "maxdepth: " + maxDepth + "\n");
+        toReturn += String.format( "linked list length: " + btsCollisionCount + "\n");
         return toReturn;
     }
 
@@ -57,11 +59,16 @@ public class KeyValueBSearchTree<K extends Comparable<K>,V> implements Dictionar
             root = new TreeNode<>(key, value);
             count++;
             maxDepth = 1;
+            btsCollisionCount = 0;
             return true;
         }
         else{
+            TreeNode.addDepth = 1;
+            btsCollisionCount = 0;
             int added = root.insert(key, value, key.hashCode());
             if(added > 0){
+                maxDepth = Math.max(maxDepth, TreeNode.addDepth);
+                btsCollisionCount = Math.max(TreeNode.collisionChainLength, btsCollisionCount);
                 count++;
                 return true;
             }

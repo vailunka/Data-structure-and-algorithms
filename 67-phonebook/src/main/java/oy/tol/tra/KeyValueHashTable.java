@@ -92,6 +92,7 @@ public class KeyValueHashTable<K extends Comparable<K>, V> implements Dictionary
             throw new IllegalArgumentException("Not Key nor value can be null");
         }
         if(count > capacity * loadfactor){
+            int newCapacity =  (int) (capacity * (1.0 / loadfactor));
             reallocate(capacity * 2);
         }
         do{
