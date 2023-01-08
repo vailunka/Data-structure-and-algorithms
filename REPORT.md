@@ -37,19 +37,13 @@ add(int index, E element) javan arraylisti otti 181000ns, kuntaas omat toteutuks
 Puolitushaus opetteleminen. Visualisaatio videot aiheesta auttoivat, toteutin molemmat iteratiivisen ja rekursiivisen tavan.
 
 ## 05-invoices
-Toteutin aluksi quicksorttia, kunnes testeissä tuli errori, että muistit loppu, no kokeilin lisäillä muistia ja toivoa parasta. Ei auttanut omaan silmään en löytänyt bugiakaan. Heapsortin opetteluun ja koodaamiseen. Eli harjoituksessa opettelin molemmat heapsort ja quicksort.
+Invoice harjoituksen aloiting tekemällä quicksortin, no testeissä muistit loppu kesken ja tein kurssilla kerrotut tavat muistin lisäämiseksi, no ei auttanut. Ei muuta kuin heapsortin kimppuun ja opiskelemaan se. Eli harjoutuksessa opittua quicksort ja heapsort.
 
 ## 67-phonebook
-Hashiin kasasin yhden pohjan, jota muokkaamaalla yritin muuttaa lopputulosta. Lopputuloksen kannalta ei ollut väliä minkä kuvan hasheista otin käyttöön. Fillfactorin käytöstä parhaaksi totetsin 0.65 vaikka ei hirveitä eroja ollut esimerkiksi 0,7. Hajautustaulukon koon kasvattamiseksi parhaaksi ja nopeimaksi totesin kaksinkertaisen. BST tapauksessa puun syvyys maksimissaan oli 56. Törmäysten hallitsemiseen käytin linkitettyä listaa ja pisin linkitetty lista oli 1, joten voidaan todeta, että ei tullut hirveänä samoja hajautuksia. Invoicessa toteutin quicksortin ja heapsortin parempi kuitenki heapsortti, koska jouduin kasvattamaan muistia jos käytin quicksorttia.
 
-![phonebookGraphs](https://gitlab.com/vailunka19/villeailunka-tira-demo-2022/-/blob/main/67-phonebook/phonebook.PNG)
-![hashit](https://gitlab.com/vailunka19/villeailunka-tira-demo-2022/-/blob/main/67-phonebook/hashit.PNG)
+Tähän tehtävään liittyy raportti! Lue ohjeet!
 
 
-
-
-PALAUTE:
-Kurssi oli mielenkiintoinen ja haastava, etenkin 67-phonebook. Osa syynä varmasti, että omat tiedot ja taidot javasta ei ole tarpeeksi hyvät. Onneksi kurssilla oli harjoitusryhmiä, joista sai nopeasti apua. Lisäksi demovidoista sai aina hyviä vinkkejä.
 
 ## Valinnaiset tehtävät
 
