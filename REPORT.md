@@ -42,6 +42,10 @@ Toteutin aluksi quicksorttia, kunnes testeissä tuli errori, että muistit loppu
 ## 67-phonebook
 Hashiin kasasin yhden pohjan, jota muokkaamaalla yritin muuttaa lopputulosta. Lopputuloksen kannalta ei ollut väliä minkä kuvan hasheista otin käyttöön. Fillfactorin käytöstä parhaaksi totetsin 0.65 vaikka ei hirveitä eroja ollut esimerkiksi 0,7. Hajautustaulukon koon kasvattamiseksi parhaaksi ja nopeimaksi totesin kaksinkertaisen. BST tapauksessa puun syvyys maksimissaan oli 56. Törmäysten hallitsemiseen käytin linkitettyä listaa ja pisin linkitetty lista oli 1, joten voidaan todeta, että ei tullut hirveänä samoja hajautuksia. Invoicessa toteutin quicksortin ja heapsortin parempi kuitenki heapsortti, koska jouduin kasvattamaan muistia jos käytin quicksorttia.
 
+![phonebookGraphs](https://gitlab.com/vailunka19/villeailunka-tira-demo-2022/-/blob/main/67-phonebook/phonebook.PNG)
+![hashit](https://gitlab.com/vailunka19/villeailunka-tira-demo-2022/-/blob/main/67-phonebook/hashit.PNG)
+
+
 
 
 PALAUTE:
