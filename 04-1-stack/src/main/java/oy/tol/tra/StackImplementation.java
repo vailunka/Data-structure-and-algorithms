@@ -54,6 +54,7 @@ public class StackImplementation<E> implements StackInterface<E> {
       catch(Exception e){
          throw new StackAllocationException(e.getMessage());
       }
+      
    }
 
    
