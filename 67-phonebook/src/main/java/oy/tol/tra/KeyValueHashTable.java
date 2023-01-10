@@ -38,8 +38,9 @@ public class KeyValueHashTable<K extends Comparable<K>, V> implements Dictionary
         // TODO: Implement this!
         try{
         if(count == 0){
+            array = (Pair<K,V>[])new Pair[size];
             this.capacity = size;
-           array = (Pair<K,V>[])new Pair[size];
+           
         }
         else{
             reallocate(size * 2);
